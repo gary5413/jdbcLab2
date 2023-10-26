@@ -11,7 +11,7 @@ public class CreateStatement {
 		try {
 			conn = JDBCutils.getConnection();
 			st = conn.createStatement();
-			String sql="SELECT * FROM customers";
+			String sql="INSERT INTO customers (name,email) VALUES ('s2','s2@mail.com')";
 			boolean status = st.execute(sql);
 			System.out.println("status:"+status);
 		} catch (Exception e) {
