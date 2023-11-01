@@ -1,8 +1,9 @@
-package jdbc_2.eeit179.garylee2.statement;
+package jdbc_2.eeit179.garylee.garylee2.statement;
 
 import java.sql.Connection;
 import java.sql.Statement;
-import jdbc_2.eeit179.garylee1.util.JDBCutils;
+
+import jdbc_2.eeit179.garylee.garylee1.util.JDBCutils;
 
 public class CreateStatement {
 	public static void main(String[] args) {

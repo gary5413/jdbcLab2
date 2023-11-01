@@ -1,4 +1,4 @@
-package jdbc_2.eeit179.garylee1.connection;
+package jdbc_2.eeit179.garylee.garylee1.connection;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 

@@ -1,4 +1,4 @@
-package jdbc_2.eeit179.garylee1.util;
+package jdbc_2.eeit179.garylee.garylee1.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,6 +28,7 @@ public class JDBCutils {
 		String url =properties.getProperty("url");
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection conn = DriverManager.getConnection(url, user, password);
+		System.out.println("開啟連線");
 		return conn;
 	}
 //	
@@ -35,6 +36,7 @@ public class JDBCutils {
 		if(conn !=null) {
 			try {
 				conn.close();
+				System.out.println("關閉連線");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -51,6 +53,7 @@ public class JDBCutils {
 		try {
 			if(conn !=null)
 				conn.close();
+				System.out.println("關閉連線");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

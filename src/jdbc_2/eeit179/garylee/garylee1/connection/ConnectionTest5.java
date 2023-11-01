@@ -1,4 +1,4 @@
-package jdbc_2.eeit179.garylee1.connection;
+package jdbc_2.eeit179.garylee.garylee1.connection;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import jdbc_2.eeit179.garylee1.util.JDBCutils;
+import jdbc_2.eeit179.garylee.garylee1.util.JDBCutils;
 
 public class ConnectionTest5 {
 
