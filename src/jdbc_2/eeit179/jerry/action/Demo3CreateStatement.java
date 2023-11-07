@@ -58,6 +58,50 @@ public class Demo3CreateStatement {
 		System.out.println("修改了："+row+"筆");
 		st.close();
 	}
+//	新增一筆資料 1005,PS5 ,10000,2023-11-06
+	public void insertData() throws SQLException {
+		String sql="INSERT INTO customers(name,email,birth) VALUES('s111','s111@mail.com','2023-11-06')";
+		Statement st = conn.createStatement();
+		int row = st.executeUpdate(sql);
+		System.out.println("新增了"+row+"筆");
+		st.close();
+	}
+//	找出100元以上的商品
+	public void select100() throws SQLException {
+		String sql="SELECT * FROM customers WHERE id >10";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while(rs.next()) {
+			System.out.println(rs.getString("name")+rs.getString("email"));
+		}
+		rs.close();
+		st.close();
+	}
+//	找出100元以上的商品2
+	public void select1002() throws SQLException {
+		String sql="SELECT name,email FROM customers WHERE id >10";
+		Statement st = conn.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		while(rs.next()) {
+			System.out.println(rs.getString(1)+rs.getString(2));
+		}
+		rs.close();
+		st.close();
+	}
+//	DDL也可以
+	public void createTable() {
+		String sql="";
+		
+	}
+	
+//	刪除id為1的資料
+	public void deleteData() throws SQLException {
+		String sql="DELETE FROM customers WHERE id=1";
+		Statement st = conn.createStatement();
+		int row = st.executeUpdate(sql);
+		System.out.println("刪除了:"+row+"筆");
+		st.close();
+	}
 	
 	public static void main(String[] args) {
 //		介紹實體化 什麼是new
@@ -68,7 +112,10 @@ public class Demo3CreateStatement {
 //		執行sql
 //			instantce.queryDB1();
 //			instantce.queryDB2();
-			instantce.updateDate();
+//			instantce.updateDate();
+//			instantce.insertData();
+//			instantce.select1002();
+			instantce.deleteData();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
