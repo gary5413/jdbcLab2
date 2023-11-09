@@ -51,13 +51,37 @@ private Connection conn;
 		rs.close();
 		pst.close();
 	}
+//	修改email功能
+//	參數是姓名 跟新的email
+	public void updateEmailByName(String name,String newEmail) throws SQLException {
+		String sql="UPDATE customers SET email = ? WHERE name =?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setString(1, newEmail);
+		pst.setString(2, name);
+		int row = pst.executeUpdate();
+		System.out.println("更新了"+row+"筆");
+		pst.close();
+	}
+	
+//	參數id int 根據此id刪除資料
+	public void deleteById(int id) throws SQLException {
+		String sql="DELETE FROM customers WHERE id = ?";
+		PreparedStatement pst = conn.prepareStatement(sql);
+		pst.setInt(1, 10);
+		int row = pst.executeUpdate();
+		System.out.println("刪除了"+row+"筆");
+		pst.close();
+	}
+	
 	
 	public static void main(String[] args) {
 		Demo4PreparedStatement instantce = new Demo4PreparedStatement();
 		try {
 			instantce.createConnection();
 //			instantce.insertData();
-			instantce.queryByName("Gary");
+//			instantce.queryByName("Gary");
+//			instantce.deleteById(10);
+			instantce.updateEmailByName("Gary", "testUpdate");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
