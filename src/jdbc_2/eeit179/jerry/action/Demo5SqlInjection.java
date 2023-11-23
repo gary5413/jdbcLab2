@@ -2,6 +2,7 @@ package jdbc_2.eeit179.jerry.action;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,15 +39,27 @@ private Connection conn;
 		return checkOK;
 	}
 	
+	public boolean checkLogin2(String username,String password) throws SQLException {
+		String sql="SELECT * FROM user_table WHERE user = ? and password= ?";
+		PreparedStatement ppst = conn.prepareStatement(sql);
+		ppst.setString(1, username);
+		ppst.setString(2, password);
+		ResultSet rs = ppst.executeQuery();
+		boolean checkOK = rs.next();
+		rs.close();
+		ppst.close();
+		return checkOK;
+	}
+	
 	public static void main(String[] args) {
-		
 		Demo5SqlInjection demo5 = new Demo5SqlInjection();
 //		String loginUser="AA";
 		String loginUser=" ' OR 1=1 -- ";
 		String loginPassword="123456";
 		try {
 			demo5.createConnection();
-			boolean result = demo5.checkLogin(loginUser, loginPassword);
+//			boolean result = demo5.checkLogin(loginUser, loginPassword);
+			boolean result = demo5.checkLogin2(loginUser, loginPassword);
 			if(result) {
 				System.out.println("登入成功");
 			}else {
