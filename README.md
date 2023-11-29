@@ -2,6 +2,7 @@
 jdbc 教學測試用專案
 
 ## 更新紀錄
+- 11/29 新增Demo6CallableStatment
 - 11/23 更新Demo5SqlInjection 新增方法
 - 11/22 新增Demo5SqlInjection
 - 11/09 更新Demo4PreparedStatment  
