@@ -3,6 +3,7 @@ package jdbc_2.eeit179.jerry.action;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Demo6CallableStatement {
@@ -36,11 +37,22 @@ public class Demo6CallableStatement {
 		callState.close();
 	}
 	
+	public void callProceureOnlyInput(int id) throws SQLException {
+		CallableStatement callState = conn.prepareCall("{call producteProc2(?)}");
+		callState.setInt(1,id);
+		ResultSet rs = callState.executeQuery();
+		rs.next();
+		String result = rs.getString(1);
+		rs.close();
+		callState.close();
+	}
+	
 	public static void main(String[] args) {
 		Demo6CallableStatement demo6 = new Demo6CallableStatement();
 		try {
 			demo6.createConnection();
-			demo6.callProcecure();
+//			demo6.callProcecure();
+			demo6.callProceureOnlyInput(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
