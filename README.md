@@ -2,6 +2,7 @@
 jdbc 教學測試用專案
 
 ## 更新紀錄
+- 12/07 新增Demo8MetaData
 - 12/05 Demo7BlobImage 更新方法
 - 11/30 
 	- 新增Demo7BlobImage
