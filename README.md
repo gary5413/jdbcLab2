@@ -2,6 +2,7 @@
 jdbc 教學測試用專案
 
 ## 更新紀錄
+- 12/08 新增Demo9SQLException
 - 12/07
 	- 更新Demo8MetaData 新增方法
 	- 新增Demo8MetaData
