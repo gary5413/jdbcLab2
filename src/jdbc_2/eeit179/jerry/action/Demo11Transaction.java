@@ -30,7 +30,7 @@ public class Demo11Transaction {
 	public void controlTarsaction() throws SQLException {
 		String sql="UPDATE user_table set balance =? WHERE user =?";
 		
-		conn.setAutoCommit(false);//啟動隱含交易模式
+		conn.setAutoCommit(false);//啟動隱含交易模式 
 		
 		PreparedStatement preState = conn.prepareStatement(sql);
 		
