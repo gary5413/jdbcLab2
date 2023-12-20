@@ -2,6 +2,7 @@
 jdbc 教學測試用專案
 
 ## 更新紀錄
+- 12/14 新增connection pool相關
 - 12/12
 	- 新增Demo12DaoAction user userDao
 	- 新增Demo11Transaction

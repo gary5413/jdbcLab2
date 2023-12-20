@@ -12,8 +12,9 @@ public class ConnectionTest2 {
 			String url = "jdbc:mysql://localhost:3306/mytestdb";
 			String user = "root";
 			String password = "5413gary";
-			Driver driver = new Driver();
-			DriverManager.registerDriver(driver);
+//			Driver driver = new Driver();
+//			DriverManager.registerDriver(driver);
+			DriverManager.registerDriver(new Driver());
 
 			Connection conn = DriverManager.getConnection(url, user, password);
 
