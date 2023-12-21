@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -39,14 +40,73 @@ public class DemoCreateStatement21 {
 			System.out.println("關閉連線");
 		}
 	}
-	
+//	CRUD 
+//	增 新增 
 	public void insert() throws SQLException {
-		String sql="INSERT INTO customers(name,email,birth) VALUES('insert22','test@mail.com','2023-12-20')";
+		String sql="INSERT INTO `user`(name,`password`,email) VALUES('test','45678','test@mail.com')";
 		Statement statement = conn.createStatement();
-		statement.execute(sql);	
-		System.out.println("執行excute");
+//		statement.execute(sql);	
+		int row = statement.executeUpdate(sql);//回傳int 成功筆數	
+//		System.out.println("執行execute");
+		System.out.println("新增"+row+"筆");
 		statement.close();
 	}
+	
+//	刪 刪除
+	public void delete() throws SQLException {
+		String sql="DELETE FROM user WHERE id=7";
+		Statement statement = conn.createStatement();
+		int row = statement.executeUpdate(sql);
+		System.out.println("刪除"+row+"筆");
+		statement.close();
+	}
+//	改 更新
+//	這邊讓同學操作
+	public void update() throws SQLException {
+		String sql="UPDATE user SET name='banana',email='banana@mail.com' WHERE id=1";
+		Statement statement = conn.createStatement();
+		int row = statement.executeUpdate(sql);
+		System.out.println("更新"+row+"筆");
+		statement.close();
+	}
+	
+//	查 搜尋 讀取
+	public void queryCustomers() throws SQLException {
+		String sql="SELECT * FROM user";
+		Statement statement = conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+//		boolean result = resultSet.next();
+//		System.out.println("result:"+result);
+		while(resultSet.next()) {
+			System.out.println(resultSet.getInt(1)+","+resultSet.getString(2)+","+resultSet.getString(3));
+		}
+		resultSet.close();
+		statement.close();
+	}
+//	搜尋單筆
+//	給同學操作
+	public void findCustomerById() throws SQLException {
+		String sql="SELECT * FROM user WHERE id =1";
+		Statement statement = conn.createStatement();
+		ResultSet resultSet = statement.executeQuery(sql);
+		while (resultSet.next()) {
+			System.out.println(resultSet.getInt(1)+","+resultSet.getString(2)+","+resultSet.getString(3));
+		}
+		resultSet.close();
+		statement.close();
+	}
+	
+	
+//	考慮放在preparestatement在變化展示 
+//	public void insert2(String name,String email) throws SQLException {
+//		String sql="INSERT INTO customers(name,email) VALUES('"+name+"','"+email+"')";
+//		Statement statement = conn.createStatement();
+////		statement.execute(sql);	
+//		int row = statement.executeUpdate(sql);//回傳int 成功筆數	
+//		System.out.println("新增"+row+"筆");
+//		statement.close();
+//	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -54,7 +114,13 @@ public class DemoCreateStatement21 {
 		DemoCreateStatement21 demo02 = new DemoCreateStatement21();
 			try {
 				demo02.CreateConnection();
-				demo02.insert();
+//				demo02.insert();
+//				demo02.delete();
+//				demo02.update();
+//				demo02.queryCustomers();
+				demo02.findCustomerById();
+//				不展示
+//				demo02.insert2("insert2","insert2@mail.com");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (Exception e) {

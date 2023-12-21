@@ -30,7 +30,7 @@ public class DemoCreateStatement1 {
 			if(status) {
 				System.out.println("開啟連線");
 			}
-			String sql="INSERT INTO customers(name,email,birth) VALUES('test1','test@mail.com','2023-12-20')";
+			String sql="INSERT INTO customers(name,email) VALUES('test','test@mail.com')";
 			Statement statement = conn.createStatement();
 			statement.execute(sql);
 			System.out.println("執行excute");
