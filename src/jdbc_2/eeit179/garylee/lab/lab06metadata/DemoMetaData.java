@@ -79,15 +79,41 @@ public class DemoMetaData {
 		prepareStatement.close();
 	}
 	
+	public void queryAllUser() throws SQLException {
+		String sql="SELECT * FROM user";
+		PreparedStatement prepareStatement = conn.prepareStatement(sql);
+		ResultSet rs = prepareStatement.executeQuery();
+		ResultSetMetaData metaData =rs.getMetaData();
+		int columnCount = metaData.getColumnCount();
+		while(rs.next()) {
+			for(int i=0;i<columnCount;i++) {
+//				
+				Object objectValue = rs.getObject(i+1);
+				String columnLabel = metaData.getColumnLabel(i+1);
+				System.out.println(columnLabel+":"+objectValue);
+			}
+			System.out.println("=====================");
+		}
+		
+		rs.close();
+		prepareStatement.close();
+	}
 	
 	public static void main(String[] args) {
 		DemoMetaData demoMetaData = new DemoMetaData();
 		try {
 			demoMetaData.CreateConnection();
 //			demoMetaData.testDatabaseMetaData();
-			demoMetaData.testResultMetaData();
+//			demoMetaData.testResultMetaData();
+			demoMetaData.queryAllUser();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				demoMetaData.closeConnection();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
