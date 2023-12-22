@@ -109,10 +109,10 @@ public class DemoPreparedStatement {
 		try {
 			demoPreparedStatement.CreateConnection();
 //			demoPreparedStatement.insert();
-//			demoPreparedStatement.deletebyId(1);
+			demoPreparedStatement.deletebyId(9);
 //			demoPreparedStatement.updateUserByName("Ben", "abc", "newben@email.com", "1995", "F203");
 //			demoPreparedStatement.findUserById(2);
-			demoPreparedStatement.findAllUser();
+//			demoPreparedStatement.findAllUser();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

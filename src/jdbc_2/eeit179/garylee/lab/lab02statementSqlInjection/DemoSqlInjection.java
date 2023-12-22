@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,9 +39,9 @@ public class DemoSqlInjection {
 	
 //	方法先不寫傳遞變數 再展示
 	public boolean login(String name,String password) throws SQLException {
-//		String sql="SELECT name,password FROM user WHERE name='Ben' and password ='123456' ";
-//		String sql="SELECT name,password FROM user WHERE name=' a' or 1=  ' and password =' or '1' = '1 ' ";
-		String sql="SELECT name,password FROM user WHERE name='"+name+"' and password ='"+password+"' ";
+//		String sql="SELECT * FROM user WHERE name='Ben' and password ='123456' ";
+//		String sql="SELECT * FROM user WHERE name=' a' or 1=  ' and password =' or '1' = '1 ' ";
+		String sql="SELECT * FROM user WHERE name='"+name+"' and password ='"+password+"' ";
 //		                                                       a' or 1=                    or '1' = '1
 		Statement statement = conn.createStatement();
 		ResultSet resultSet = statement.executeQuery(sql);
@@ -50,11 +51,23 @@ public class DemoSqlInjection {
 		return  checkOK;
 	}
 	
+	public boolean login2(String name,String password) throws SQLException {
+		String sql="SELECT * FROM user WHERE name=? and password=?";
+		PreparedStatement prepareStatement = conn.prepareStatement(sql);
+		prepareStatement.setString(1, name);
+		prepareStatement.setString(2, password);
+		ResultSet resultSet = prepareStatement.executeQuery();
+		boolean checkOK = resultSet.next();
+		resultSet.close();
+		prepareStatement.close();
+		return  checkOK;
+	}
+	
 	
 	public static void main(String[] args) {
 		boolean status=true;
+		Scanner scanner = new Scanner(System.in);
 		while(status) {
-			Scanner scanner = new Scanner(System.in);
 			System.out.println("姓名：");
 //			nextLine() 讀一整行的字串回傳。
 			String name = scanner.nextLine();
@@ -63,7 +76,8 @@ public class DemoSqlInjection {
 			DemoSqlInjection demoSqlInjection = new DemoSqlInjection();
 			try {
 				demoSqlInjection.CreateConnection();
-				boolean checkOK = demoSqlInjection.login(name, password);
+//				boolean checkOK = demoSqlInjection.login(name, password);
+				boolean checkOK = demoSqlInjection.login2(name, password);
 					if(checkOK) {
 						System.out.println("登入成功");
 						status=false;
@@ -83,7 +97,6 @@ public class DemoSqlInjection {
 				}
 			}
 		}
-		
 		
 	}//psvm of end
 

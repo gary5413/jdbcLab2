@@ -43,6 +43,7 @@ public class Demo7BlobImage {
 		preState.execute();
 		preState.close();
 		fis.close();
+		preState.close();
 		System.out.println("save file OK");
 	}
 	
