@@ -87,7 +87,6 @@ public class DemoMetaData {
 		int columnCount = metaData.getColumnCount();
 		while(rs.next()) {
 			for(int i=0;i<columnCount;i++) {
-//				
 				Object objectValue = rs.getObject(i+1);
 				String columnLabel = metaData.getColumnLabel(i+1);
 				System.out.println(columnLabel+":"+objectValue);
