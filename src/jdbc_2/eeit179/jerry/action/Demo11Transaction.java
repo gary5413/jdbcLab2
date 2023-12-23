@@ -34,12 +34,12 @@ public class Demo11Transaction {
 		
 		PreparedStatement preState = conn.prepareStatement(sql);
 		
-		preState.setInt(1, 700);
+		preState.setInt(1, 600);
 		preState.setString(2, "AA");
 		preState.execute();
 		
 		//測試失敗
-//		System.out.println(10/0); 
+		System.out.println(10/0); 
 		
 		preState.setInt(1, 1100);
 		preState.setString(2, "BB");

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class JDBCutils {
 
-	public static Connection CreateConnection() throws Exception {
+	public static Connection createConnection() throws Exception {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Properties properties = new Properties();
 		FileInputStream fileInputStream = new FileInputStream(new File("src/jdbc2.properties"));
