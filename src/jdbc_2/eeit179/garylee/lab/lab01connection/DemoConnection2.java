@@ -13,6 +13,9 @@ public class DemoConnection2 {
 		String user = "root";
 		String password = "5413gary";
 		try {
+			/*
+			 * 此方法不推薦 
+			 */
 			Driver driver = new Driver();
 			DriverManager.registerDriver(driver);
 			Connection conn = DriverManager.getConnection(url,user,password);

@@ -88,7 +88,7 @@ public class DemoPreparedStatement2 {
 	public static void main(String[] args) {
 		DemoPreparedStatement2 demoPreparedStatement = new DemoPreparedStatement2();
 		try {
-			conn = JDBCutils.createConnection();
+			conn = JDBCutils.getConnection();
 //			demoPreparedStatement.insert();
 //			demoPreparedStatement.deletebyId(1);
 //			demoPreparedStatement.updateUserByName("Ben", "abc", "newben@email.com", "1995", "F203");
