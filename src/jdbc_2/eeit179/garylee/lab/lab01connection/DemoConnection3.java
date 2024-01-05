@@ -17,9 +17,6 @@ public class DemoConnection3 {
 		try {
 //			加載Driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
-//			String url="jdbc:mysql://localhost:3306/mytestdb";
-//			String user="root";
-//			String password="5413gary";
 //			讀取jdbc.properties
 			Properties properties = new Properties();
 			FileInputStream fileInputStream = new FileInputStream(new File("src/jdbc2.properties"));
